@@ -1,10 +1,15 @@
 let canvas
+let things
 // Constants
 const Y_AXIS = 1;
 const X_AXIS = 2;
 
 let faveImgs = []
 let faveThings = []
+let pressed = 'start'
+
+let gradient1, gradient2
+
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight)
@@ -21,6 +26,8 @@ function setup() {
   canvas.position(0, 0)
   canvas.style('z-index', '-1') 
 
+  things = createGraphics(windowWidth, windowHeight)
+
   for (let i = 0; i < faveImgs.length; i++) {
     let x = random(width);
     let y = random(height);
@@ -31,6 +38,10 @@ function setup() {
 
   colorArray = [color(105, 221, 255), color(150, 205, 255), color(216, 225, 255), color(219, 186, 221), color(190, 146, 162)]
   darkColors = [color(62, 147, 173), color(103, 147, 191), color(183, 192, 229), color(192, 155, 196), color(165, 119, 136)]
+
+  gradient1 = random(colorArray)
+  gradient2 = random(colorArray)
+
 
   noLoop();
 } 
@@ -75,16 +86,43 @@ class FavoriteThings {
   }
 
   show() {
-    image(this.img, this.x, this.y, this.r, this.r);
+    things.image(this.img, this.x, this.y, this.r, this.r);
+  }
 }
 
-}
-  
-function draw() {
-  setGradient(0, 0, windowWidth, windowHeight, random(colorArray), random(colorArray));
+function showThings() {
   for (let i = 0; i < faveThings.length; i++) {
     faveThings[i].show();
+  } 
+  image(things, 150, 75)
 }
+
+function mousePressed() {
+  if (pressed === 'start') {
+    showThings()
+    return pressed = false
+  }
+  if (pressed === false || pressed === 'start') {
+    redraw()
+    return pressed = true
+  }
+
+  if (pressed === true) {
+    redraw()
+    return pressed = false
+  }
+}
+
+function draw() {
+  setGradient(0, 0, windowWidth, windowHeight, gradient1, gradient2);
+
+  fill(0)
+  // ellipse(25, 25, 50, 50)
+
+  if (pressed === true) {
+    showThings()
+  }
+
   // addObjects()
   // background('#fae')
 }
