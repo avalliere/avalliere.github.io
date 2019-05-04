@@ -51,6 +51,6 @@ function addObjects() {
   
 function draw() {
   setGradient(0, 0, windowWidth, windowHeight, random(colorArray), random(colorArray));
-  addObjects()
+  // addObjects()
   // background('#fae')
 }
