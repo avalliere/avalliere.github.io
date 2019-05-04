@@ -39,7 +39,7 @@ body {
 }
 
 .cover-container {
-  max-width: 42em;
+  max-width: 75%;
 }
 
 
@@ -95,6 +95,15 @@ body {
 .cover .btn-lg {
   padding: .75rem 1.25rem;
   font-weight: 700;
+}
+
+.cover-heading {
+  background-color: #333;
+}
+
+.content {
+  padding-right: 50px;
+  padding-left: 50px;
 }
 
 
