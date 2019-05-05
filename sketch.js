@@ -26,11 +26,11 @@ function setup() {
   canvas.position(0, 0)
   canvas.style('z-index', '-1') 
 
-  things = createGraphics(windowWidth, windowHeight)
+  things = createGraphics(windowWidth-200, windowHeight-200)
 
   for (let i = 0; i < faveImgs.length; i++) {
-    let x = random(width);
-    let y = random(height);
+    let x = random(windowWidth-200);
+    let y = random(windowHeight-200);
     let r = random(50, 150);
     let fave = new FavoriteThings(x, y, r, faveImgs[i]);
     faveThings.push(fave);
